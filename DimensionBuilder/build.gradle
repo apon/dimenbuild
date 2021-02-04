@@ -1,0 +1,59 @@
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'kotlin'
+apply plugin: 'maven'
+//apply plugin: 'com.novoda.bintray-release'
+buildscript {
+    ext.kotlin_version = '1.3.31'
+    ext.gradle_version = '3.5.3'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.android.tools.build:gradle:$gradle_version"
+    }
+}
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Android gradle plugin will allow us to access Android specific features
+    implementation "com.android.tools.build:gradle:$gradle_version"
+}
+
+gradlePlugin {
+    plugins {
+        create("dimensionbuilder") {
+            id = "me.apon.android.dimenbuild"
+            implementationClass = "me.apon.builder.BuilderPlugin"
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = 'me.apon.android'
+            pom.artifactId = 'dimenbuild'
+            pom.version = '1.0.0'
+            repository(url: uri('../repo'))
+        }
+    }
+}
+
+//添加发布相关的配置
+//publish {
+//    userOrg = 'apon' //用户名
+//    repoName = 'maven'	//仓库名，默认为maven
+//    groupId = 'me.apon.android'//代码库路径
+//    artifactId = 'dimenbuild'//项目名称
+//    publishVersion = '1.0.0'//版本号
+//    desc = 'A Gradle plugin for generate dimension values'//项目描述
+//    website = 'https://github.com/apon/dimenbuild'//项目对应网站
+//}
