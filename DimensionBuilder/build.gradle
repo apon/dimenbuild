@@ -36,16 +36,16 @@ gradlePlugin {
     }
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            pom.groupId = 'me.apon.android'
-            pom.artifactId = 'dimenbuild'
-            pom.version = '1.0.0'
-            repository(url: uri('../repo'))
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            pom.groupId = 'me.apon.android'
+//            pom.artifactId = 'dimenbuild'
+//            pom.version = '1.0.0'
+//            repository(url: uri('../repo'))
+//        }
+//    }
+//}
 
 //添加发布相关的配置
 //publish {
