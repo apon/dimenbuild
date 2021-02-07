@@ -30,7 +30,7 @@ dependencies {
 gradlePlugin {
     plugins {
         create("dimensionbuilder") {
-            id = "me.apon.android.dimenbuild"
+            id = "com.github.apon:dimenbuild"
             implementationClass = "me.apon.builder.BuilderPlugin"
         }
     }
